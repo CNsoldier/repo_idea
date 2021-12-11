@@ -53,4 +53,13 @@ public interface UserMapper {
     public List<Resource> findResourceByRoleId(@Param("ids") List<Integer> ids);
 
     public List<Resource> findResourceById(@Param("ids") List<Integer> ids);
+    
+    public void test11();
+    public void test21();
+    public void test31();
+    public void test41();
+    public void test51();
+    public void test61();
+    public void test71();
+    public void test81();
 }
