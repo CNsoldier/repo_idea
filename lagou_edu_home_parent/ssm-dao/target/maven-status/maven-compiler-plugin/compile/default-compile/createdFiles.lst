@@ -1,0 +1,9 @@
+com\soldier\dao\ResourceMapper.class
+com\soldier\dao\RoleMapper.class
+com\soldier\dao\ResourceCategoryMapper.class
+com\soldier\dao\UserMapper.class
+com\soldier\dao\CourseContentMapper.class
+com\soldier\dao\MenuMapper.class
+com\soldier\dao\PromotionSpaceMapper.class
+com\soldier\dao\CourseMapper.class
+com\soldier\dao\PromotionAdMapper.class

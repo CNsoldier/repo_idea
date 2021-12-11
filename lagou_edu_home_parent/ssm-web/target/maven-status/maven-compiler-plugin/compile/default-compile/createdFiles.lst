@@ -1,0 +1,9 @@
+com\soldier\controller\RoleController.class
+com\soldier\controller\MenuController.class
+com\soldier\controller\ResourceCategoryController.class
+com\soldier\controller\PromotionAdController.class
+com\soldier\controller\CourseContentController.class
+com\soldier\controller\CourseController.class
+com\soldier\controller\PromotionSpaceController.class
+com\soldier\controller\UserController.class
+com\soldier\controller\ResourceController.class
