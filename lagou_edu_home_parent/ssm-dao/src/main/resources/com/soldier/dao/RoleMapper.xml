@@ -37,4 +37,27 @@
     <delete id="deleteRole" parameterType="int">
         delete from roles where id = #{id}
     </delete>
+    
+    <!-- 查询当前角色所拥有的资源分类信息 -->
+    <select id="findResourceCategoryById" parameterType="int" resultType="com.soldier.domian.ResourceCategory">
+        SELECT DISTINCT rc.* FROM role_resource_relation rr
+        INNER JOIN resource r ON r.id = rr.resource_id
+        INNER JOIN resource_category rc ON rc.id = r.category_id
+        WHERE rr.role_id = #{roleId}
+    </select>
+
+    <!-- 查询当前角色所拥有的资源信息 -->
+    <select id="findResourceByRoleId" parameterType="int" resultType="com.soldier.domian.Resource">
+        SELECT * FROM resource WHERE category_id = #{id}
+    </select>
+
+    <!-- 1.根据roleId清空中间表的关联关系 -->
+    <delete id="deleteRoleResourceRelation" parameterType="int">
+        delete from role_resource_relation where role_id = #{roleId}
+    </delete>
+
+    <!-- 2.为角色分配资源信息 -->
+    <insert id="roleContextResource" parameterType="com.soldier.domian.Role_resource_relation">
+        insert into role_resource_relation values (null,#{resourceId},#{roleId},#{createdTime},#{updatedTime},#{createdBy},#{updatedBy})
+    </insert>
 </mapper>

@@ -1,9 +1,7 @@
 package com.soldier.service.impl;
 
 import com.soldier.dao.RoleMapper;
-import com.soldier.domian.Role;
-import com.soldier.domian.RoleMenuVo;
-import com.soldier.domian.Role_menu_relation;
+import com.soldier.domian.*;
 import com.soldier.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -63,5 +61,40 @@ public class RoleServiceImpl implements RoleService {
 
 
         roleMapper.deleteRole(roleId);
+    }
+
+    @Override
+    public List<ResourceCategory> findResourceListByRoleId(Integer roleId) {
+        List<ResourceCategory> categoryList = roleMapper.findResourceCategoryById(roleId);
+        for (ResourceCategory resourceCategory : categoryList) {
+
+            List<Resource> resourceList = roleMapper.findResourceByRoleId(resourceCategory.getId());
+            resourceCategory.setResourceList(resourceList);
+            }
+        return categoryList;
+    }
+
+    @Override
+    public void roleContextResource(RoleResourceVO roleResourceVO) {
+        
+        // 1.清空关联表关系
+        roleMapper.deleteRoleResourceRelation(roleResourceVO.getRoleId());
+        
+        // 2.为角色分配资源
+        for (Integer resourceId : roleResourceVO.getResourceIdList()) {
+
+            // 1.封装数据
+            Role_resource_relation roleResourceRelation = new Role_resource_relation();
+            Date date = new Date();
+            roleResourceRelation.setResourceId(resourceId);
+            roleResourceRelation.setRoleId(roleResourceVO.getRoleId());
+            roleResourceRelation.setCreatedTime(date);
+            roleResourceRelation.setUpdatedTime(date);
+            roleResourceRelation.setCreatedBy("system");
+            roleResourceRelation.setUpdatedBy("system");
+
+            // 2.调用mapper
+            roleMapper.roleContextResource(roleResourceRelation);
+        }
     }
 }

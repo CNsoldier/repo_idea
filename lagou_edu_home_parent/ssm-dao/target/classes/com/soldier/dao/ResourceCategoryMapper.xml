@@ -6,4 +6,25 @@
     <select id="findAllResourceCategory" resultType="com.soldier.domian.ResourceCategory">
         select * from resource_category
     </select>
+
+    <!-- 添加资源分类 -->
+    <insert id="saveResource" parameterType="com.soldier.domian.ResourceCategory">
+        insert into resource_category values (null,#{name},#{sort},#{createdTime},#{updatedTime},#{createdBy},#{updatedBy})
+    </insert>
+
+    <!-- 更新资源分类 -->
+    <update id="updateResource" parameterType="com.soldier.domian.ResourceCategory">
+        update resource_category set
+            name = #{name},
+            sort = #{sort},
+            updated_time = #{updatedTime},
+            created_by = #{createdBy},
+            updated_by = #{updatedBy}
+            where id = #{id}
+    </update>
+
+    <!-- 删除资源分类 -->
+    <delete id="deleteResource" parameterType="int">
+        delete from resource_category where id = #{id}
+    </delete>
 </mapper>

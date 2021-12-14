@@ -1,9 +1,6 @@
 package com.soldier.controller;
 
-import com.soldier.domian.Menu;
-import com.soldier.domian.ResponseResult;
-import com.soldier.domian.Role;
-import com.soldier.domian.RoleMenuVo;
+import com.soldier.domian.*;
 import com.soldier.service.MenuService;
 import com.soldier.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,4 +88,26 @@ public class RoleController {
         return responseResult;
     }
 
+    /*
+        获取当前角色拥有的资源信息
+     */
+    @RequestMapping("/findResourceListByRoleId")
+    public ResponseResult findResourceListByRoleId(Integer roleId){
+
+        List<ResourceCategory> categoryList = roleService.findResourceListByRoleId(roleId);
+        //System.out.println(categoryList.toString());
+
+        return new ResponseResult(true,200,"响应成功",categoryList);
+    }
+
+    /*
+        为角色分配资源
+     */
+    @RequestMapping("/roleContextResource")
+    public ResponseResult roleContextResource(@RequestBody RoleResourceVO roleResourceVO){
+
+        roleService.roleContextResource(roleResourceVO);
+
+        return new ResponseResult(true,200,"响应成功",null);
+    }
 }

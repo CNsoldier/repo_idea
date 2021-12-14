@@ -10,6 +10,7 @@ com\soldier\domian\CourseMedia.class
 com\soldier\domian\CourseVO.class
 com\soldier\domian\Menu.class
 com\soldier\domian\RoleMenuVo.class
+com\soldier\domian\Role_resource_relation.class
 com\soldier\domian\CourseLesson.class
 com\soldier\domian\UserVo.class
 com\soldier\domian\PromotionSpace.class
@@ -18,3 +19,4 @@ com\soldier\domian\Role.class
 com\soldier\domian\ResourceVo.class
 com\soldier\domian\PromotionAdVO.class
 com\soldier\domian\Resource.class
+com\soldier\domian\RoleResourceVO.class
